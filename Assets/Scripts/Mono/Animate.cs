@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class animate : MonoBehaviour {
+public class Animate : MonoBehaviour {
     private Animator animator;
     public float moveSpeed;
     public Transform waypoint;

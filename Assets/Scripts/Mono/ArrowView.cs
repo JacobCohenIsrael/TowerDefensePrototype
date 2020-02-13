@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,10 +23,19 @@ public class ArrowView : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-        transform.localRotation = Quaternion.Euler(Vector3.RotateTowards(initialPosition, targetPosition, moveSpeed * Time.deltaTime, moveSpeed * Time.deltaTime));
+        RotateToTarget();
         if (Vector3.Distance(transform.position, targetPosition) < destroySelfDistance)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void RotateToTarget()
+    {
+        Vector3 direction = (targetPosition - transform.position).normalized;
+        float n = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (n < 0) n += 360;
+
+        transform.eulerAngles = new Vector3(0, 0, n);
     }
 }
