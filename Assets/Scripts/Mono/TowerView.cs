@@ -19,7 +19,7 @@ public class TowerView : MonoBehaviour
         if (closestEnemy != null && time > shootSpeed)
         {
             ArrowView arrow = Instantiate<ArrowView>(arrowProjectile, shootTransform.position, Quaternion.identity);
-            arrow.SetTargetPosition(closestEnemy.GetPosition());
+            arrow.SetTargetTransform(closestEnemy.transform);
             time = 0;
         }
     }
@@ -28,7 +28,7 @@ public class TowerView : MonoBehaviour
     {
         foreach (Enemy enemy in EnemySpawner.Enemies)
         {
-            if (Vector2.Distance(transform.position, enemy.GetPosition()) < towerRange)
+            if (!enemy.IsDead() && Vector2.Distance(transform.position, enemy.GetPosition()) < towerRange)
             {
                 return enemy;
             }

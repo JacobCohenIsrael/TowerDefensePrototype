@@ -7,7 +7,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private int maxHealth;
 
+    private int currentHealth;
     private Transform[] waypoints;
     private Animator myAnimator;
     private int currentWaypointIndex;
@@ -18,6 +20,7 @@ public class Enemy : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myAnimator.Play("run");
         currentWaypointIndex = 0;
+        currentHealth = maxHealth;
         originalXScale = transform.localScale.x;
     }
 
@@ -45,6 +48,20 @@ public class Enemy : MonoBehaviour
     public void SetWaypoints(Transform[] waypoints)
     {
         this.waypoints = waypoints;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject, 0.25f);
+        }
+    }
+
+    public bool IsDead()
+    {
+        return currentHealth <= 0;
     }
 
     private void Look()

@@ -196,8 +196,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies:
   - {fileID: -5290824254916630417, guid: 7aed946b5664405459098c6b3528627a, type: 3}
+  - {fileID: -5290824254916630417, guid: 7aed946b5664405459098c6b3528627a, type: 3}
+  - {fileID: -5290824254916630417, guid: 7aed946b5664405459098c6b3528627a, type: 3}
   spawnTransform: {fileID: 447370713}
   enemyPath: {fileID: 1712529597}
+  spawnDelay: 0.5
 --- !u!1 &430163914
 GameObject:
   m_ObjectHideFlags: 0
